@@ -1,5 +1,6 @@
 #include <stdlib.h>
 
+
 int	ft_strlen(const char *str)
 {
 	int	i;
@@ -14,16 +15,13 @@ int	ft_strlen(const char *str)
 
 char *ft_strchr(char *str, int c)
 {
-	int	i;
-
-	i = 0;
-	while (str[i])
+	while (*str)
 	{
-		if (str[i] == c)
-			return (str + i);
-		i++;
+		if (*str == c)
+			return (str);
+		str++;
 	}
-	return (str);
+	return (0);
 }
 
 char *ft_strjoin(const char *str, const char *nbr)
@@ -46,6 +44,7 @@ char *ft_strjoin(const char *str, const char *nbr)
 		arr[p + i] = nbr[i];
 		i++;
 	}
+	arr[p + i] = '\0';
 	return (arr);
 }
 
