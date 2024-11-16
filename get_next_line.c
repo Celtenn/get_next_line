@@ -63,7 +63,7 @@ char *ft_read(char *str, int fd)
 
 	read_len = 1;
 	buffer = malloc(BUFFER_SIZE + 1);
-	while (read_len > 0)
+	while (!ft_strchr(str, '\n') && read_len > 0)
 	{
 		read_len = read(fd, buffer, BUFFER_SIZE);
 		if (read_len == -1)
