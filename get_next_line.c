@@ -7,18 +7,14 @@ char	*ft_last(char *str)
 	int		p;
 
 	i = 0;
-	while (str[i])
-	{
-		i++;
-	}
-	while (str[p] != '\n' && p < i)
+	p = 0;
+	while (str[p] != '\n' && str[p])
 	{
 		p++;
 	}
-	arr = malloc(i - p + 1);
+	arr = malloc(ft_strlen(str) - p + 1);
 	if (!arr)
 		return (0);
-	i = 0;
 	while (str[++p])
 	{
 		arr[i] = str[p];
@@ -63,6 +59,8 @@ char *ft_read(char *str, int fd)
 
 	read_len = 1;
 	buffer = malloc(BUFFER_SIZE + 1);
+	if (!buffer)
+		return (0);
 	while (!ft_strchr(str, '\n') && read_len > 0)
 	{
 		read_len = read(fd, buffer, BUFFER_SIZE);
