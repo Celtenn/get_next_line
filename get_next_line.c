@@ -1,39 +1,15 @@
 #include "get_next_line.h"
 
-char	*ft_last(char *str)
-{
-	char	*arr;
-	int		i;
-	int		p;
-
-	i = 0;
-	p = 0;
-	while (str[p] != '\n' && str[p])
-	{
-		p++;
-	}
-	arr = malloc(ft_strlen(str) - p + 1);
-	if (!arr)
-		return (0);
-	while (str[++p])
-	{
-		arr[i] = str[p];
-		i++;
-	}
-	arr[i] = '\0';
-	return (arr);
-}
-
 char	*ft_line(char *str)
 {
 	char	*arr;
 	int		i;
 
 	i = 0;
+	if (!str[i])
+		return (0);
 	while (str[i] && str[i] != '\n')
-	{
 		i++;
-	}
 	arr = malloc(i + 2);
 	if (!arr)
 		return (0);
@@ -52,6 +28,34 @@ char	*ft_line(char *str)
 	return (arr);
 }
 
+char	*ft_last(char *str)
+{
+	char	*arr;
+	int		i;
+	int		p;
+
+	i = 0;
+	p = 0;
+	while (str[p] && str[p] != '\n')
+	{
+		p++;
+	}
+	if (!str[p])
+	{
+		free(str);
+		return (0);
+	}
+	arr = malloc(ft_strlen(str) - p + 1);
+	if (!arr)
+		return (0);
+	p++;
+	while (str[p])
+		arr[i++] = str[p++];
+	arr[i] = '\0';
+	free(str);
+	return (arr);
+}
+
 char *ft_read(char *str, int fd)
 {
 	int	read_len;
@@ -61,7 +65,7 @@ char *ft_read(char *str, int fd)
 	buffer = malloc(BUFFER_SIZE + 1);
 	if (!buffer)
 		return (0);
-	while (!ft_strchr(str, '\n') && read_len > 0)
+	while (!ft_strchr(str, '\n') && read_len != 0)
 	{
 		read_len = read(fd, buffer, BUFFER_SIZE);
 		if (read_len == -1)
@@ -75,6 +79,7 @@ char *ft_read(char *str, int fd)
 	free(buffer);
 	return (str);
 }
+
 char *get_next_line(int fd)
 {
 	static char *str;

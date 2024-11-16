@@ -6,6 +6,8 @@ int	ft_strlen(const char *str)
 	int	i;
 
 	i = 0;
+	if (!str)
+		return (0);
 	while (str[i])
 	{
 		i++;
@@ -15,38 +17,41 @@ int	ft_strlen(const char *str)
 
 char *ft_strchr(char *str, int c)
 {
-	int	i;
-
-	i = 0;
-	while (str[i])
+	if (!str)
+		return (0);
+	while (*str)
 	{
-		if (str[i] == c)
-			return (&str[i]);
-		i++;
+		if (*str == c)
+			return (str);
+		str++;
 	}
 	return (0);
 }
 
-char *ft_strjoin(const char *str, const char *nbr)
+char *ft_strjoin(char *str, char *nbr)
 {
-	int	p;
-	int	i;
+	size_t p;
+	size_t i;
 	char	*arr;
 
-	i = 0;
-	arr = (char *)malloc(ft_strlen(str) + ft_strlen(nbr));
-	while (str[i])
+	if (!str)
 	{
-		arr[p] = str[i];
-		i++;
-		p++;
+		str = (char *)malloc(sizeof(char) * 1);
+		str[0] = '\0';
 	}
+	if (!str || !nbr)
+		return (NULL);
+	arr = malloc(ft_strlen(str) + ft_strlen(nbr) + 1);
+	if (!arr)
+		return (NULL);
 	i = 0;
-	while (nbr[i])
-	{
-		arr[p + i] = nbr[i];
-		i++;
-	}
-	arr[p + i] = '\0';
+	p = 0;
+	while (str[p] != '\0')
+		arr[i++] = str[p++];
+	i = 0;
+	while (nbr[i] != '\0')
+		arr[p++] = nbr[i++];
+	arr[p] = '\0';
+	free(str);
 	return (arr);
 }
