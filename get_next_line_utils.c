@@ -15,11 +15,14 @@ int	ft_strlen(const char *str)
 
 char *ft_strchr(char *str, int c)
 {
-	while (*str)
+	int	i;
+
+	i = 0;
+	while (str[i])
 	{
-		if (*str == c)
-			return (str);
-		str++;
+		if (str[i] == c)
+			return (&str[i]);
+		i++;
 	}
 	return (0);
 }
@@ -46,11 +49,4 @@ char *ft_strjoin(const char *str, const char *nbr)
 	}
 	arr[p + i] = '\0';
 	return (arr);
-}
-
-#include <stdio.h>
-int main()
-{
-	char nbr[] = "merhaba";
-	printf("%s", ft_strjoin(nbr, "lan"));
 }
