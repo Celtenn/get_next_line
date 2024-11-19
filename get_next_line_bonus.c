@@ -82,9 +82,15 @@ char *ft_read(char *str, int fd)
 
 char *get_next_line(int fd)
 {
-	static char *str[2048];
+	static char *str[4096];
 	char	*arr;
 
+	if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, 0, 0) == -1)
+	{
+		free(str[fd]);
+		str[fd] = NULL;
+		return (0);
+	}
 	str[fd] = ft_read(str[fd], fd);
 	if (!str[fd])
 		return (0);

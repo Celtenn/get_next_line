@@ -85,6 +85,12 @@ char *get_next_line(int fd)
 	static char *str;
 	char	*arr;
 
+	if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, 0, 0))
+	{
+		free(str);
+		str = NULL;
+		return (0);
+	}
 	str = ft_read(str, fd);
 	if (!str)
 		return (0);
