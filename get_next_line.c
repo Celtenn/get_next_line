@@ -1,4 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: idkahram <idkahram@student.42kocaeli.co    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/11/20 04:37:43 by idkahram          #+#    #+#             */
+/*   Updated: 2024/11/20 14:56:55 by idkahram         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "get_next_line.h"
+#include <unistd.h>
+#include <stdlib.h>
 
 char	*ft_line(char *str)
 {
@@ -56,9 +70,9 @@ char	*ft_last(char *str)
 	return (arr);
 }
 
-char *ft_read(char *str, int fd)
+char	*ft_read(char *str, int fd)
 {
-	int	read_len;
+	int		read_len;
 	char	*buffer;
 
 	read_len = 1;
@@ -80,12 +94,12 @@ char *ft_read(char *str, int fd)
 	return (str);
 }
 
-char *get_next_line(int fd)
+char	*get_next_line(int fd)
 {
-	static char *str;
-	char	*arr;
+	static char	*str;
+	char		*arr;
 
-	if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, 0, 0))
+	if (fd < 0 || BUFFER_SIZE <= 0)
 	{
 		free(str);
 		str = NULL;

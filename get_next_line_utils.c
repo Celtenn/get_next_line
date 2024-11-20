@@ -1,5 +1,16 @@
-#include <stdlib.h>
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   get_next_line_utils.c                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: idkahram <idkahram@student.42kocaeli.co    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/11/20 04:36:57 by idkahram          #+#    #+#             */
+/*   Updated: 2024/11/20 04:37:18 by idkahram         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
+#include <stdlib.h>
 
 int	ft_strlen(const char *str)
 {
@@ -15,7 +26,7 @@ int	ft_strlen(const char *str)
 	return (i);
 }
 
-char *ft_strchr(char *str, int c)
+char	*ft_strchr(char *str, int c)
 {
 	if (!str)
 		return (0);
@@ -28,10 +39,10 @@ char *ft_strchr(char *str, int c)
 	return (0);
 }
 
-char *ft_strjoin(char *str, char *nbr)
+char	*ft_strjoin(char *str, char *nbr)
 {
-	size_t p;
-	size_t i;
+	size_t	p;
+	size_t	i;
 	char	*arr;
 
 	if (!str)
